@@ -1,0 +1,10 @@
+import os
+import pkgutil
+import importlib
+
+__all__ = []
+PATH = [os.path.dirname(__file__)]
+for loader, module_name, is_pkg in pkgutil.walk_packages(PATH):
+    __all__.append(module_name)
+    _module = importlib.import_module(module_name)
+    globals()[module_name] = _module
